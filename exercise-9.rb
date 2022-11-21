@@ -10,7 +10,13 @@ class Employee
 
 end
 
-class BmxBike
+class Bike
+  def prepare
+    raise "Must be implemented by subclass"
+  end
+end
+
+class BmxBike < Bike
 
   def prepare
     clean
@@ -22,7 +28,7 @@ class BmxBike
 
 end
 
-class RoadBike
+class RoadBike < Bike
 
   def prepare
     lubricate_gears
@@ -34,7 +40,7 @@ class RoadBike
 
 end
 
-class MountainBike
+class MountainBike < Bike
 
   def prepare
     adjust_suspension
@@ -46,7 +52,7 @@ class MountainBike
 
 end
 
-class Tricycle
+class Tricycle < Bike
 
   def prepare 
     adjust_seat
