@@ -2,6 +2,9 @@ class Employee
 
   def prepare(bike)
     begin
+      # `Bike`-specific behavior belongs in the `Bike` object's method. 
+      # `Employee` objects aren't responsible for knowing each type of 
+      # prepare method, in my opinion. 
       bike.prepare
     rescue
       puts 'Uhh, boss, I dunno how to do that.'
@@ -10,6 +13,7 @@ class Employee
 
 end
 
+# Create abstraction class and define method to be overridden in subclasses 
 class Bike
   def prepare
     raise "Must be implemented by subclass"
@@ -20,6 +24,7 @@ class BmxBike < Bike
 
   def prepare
     clean
+    # other code here... 
   end
 
   def clean
@@ -32,6 +37,7 @@ class RoadBike < Bike
 
   def prepare
     lubricate_gears
+    # other code here... 
   end
 
   def lubricate_gears
@@ -44,6 +50,7 @@ class MountainBike < Bike
 
   def prepare
     adjust_suspension
+    # other code here... 
   end
 
   def adjust_suspension
@@ -56,6 +63,7 @@ class Tricycle < Bike
 
   def prepare 
     adjust_seat
+    # other code here... 
   end
 
   def adjust_seat
@@ -68,6 +76,7 @@ bikes = [BmxBike.new, RoadBike.new, MountainBike.new, Tricycle.new]
 
 employee = Employee.new
 
+# Each `Employee` only calls `.prepare` 
 bikes.each do |bike|
   employee.prepare(bike)
 end
